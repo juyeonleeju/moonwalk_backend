@@ -10,13 +10,12 @@ class Course(models.Model):
     COURS_DETAIL_LT_CN = models.IntegerField(default=0) #32bit정수
     ADIT_DC = models.TextField(null=True)
     COURS_TIME_CN = models.CharField(null=True,max_length=200)
-    OPTN_DC = models.CharField(null=True,max_length=200)
     TOILET_DC = models.CharField(null=True,max_length=200)
     LNM_ADDR = models.CharField(null=True,max_length=200)
     COURS_SPOT_LA = models.FloatField(null=True,max_length=200) #소수점
     COURS_SPOT_LO = models.FloatField(null=True,max_length=200) #소수점
 
 def __str__(self):
-        return self.title
+        return self.title #객체 문자열 표현 리턴 
 
 

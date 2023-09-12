@@ -4,6 +4,6 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/up', SignUpView.as_view()),
+    path('/up', SignUpView.as_view()), 
     path('/in', SignInView.as_view()),
 ] 
