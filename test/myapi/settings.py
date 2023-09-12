@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'course',
     'reward',
     'login',
-    
 ]
 
 MIDDLEWARE = [

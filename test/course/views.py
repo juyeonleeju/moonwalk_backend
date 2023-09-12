@@ -11,6 +11,7 @@ def course_list(request):
         query_set = Course.objects.all()
         serializer = CourseSerializer(query_set, many=True)
         return JsonResponse(serializer.data, safe=False)
+    
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = CourseSerializer(data=data)
@@ -19,4 +20,5 @@ def course_list(request):
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
     return HttpResponse('Course')
+
 

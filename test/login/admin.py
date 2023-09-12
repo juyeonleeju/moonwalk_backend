@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.contrib import admin
-from .models import Course
+#from .models import Course
 
 from import_export import resources, fields
 from import_export.admin import ImportExportMixin
 from import_export.widgets import ForeignKeyWidget
-
+"""
 # Register your models here.
 class CourseAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = Course
@@ -24,3 +24,4 @@ class CourseInfoResource(resources.ModelResource):
 class Meta:
      model = CourseInfoResource
     # exclude = ('','')
+    """
