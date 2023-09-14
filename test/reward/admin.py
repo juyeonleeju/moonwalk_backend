@@ -12,7 +12,7 @@ from import_export.widgets import ForeignKeyWidget
 
 class RewardAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = Reward
-    list_display = ('ID','xp')
+    list_display = ('xp',)
     search_fields = ['ipa', 'dev_hostname']
 
 admin.site.register( Reward, RewardAdmin)   
