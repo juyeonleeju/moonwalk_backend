@@ -15,13 +15,7 @@ class AccountAdmin(ImportExportMixin, admin.ModelAdmin):
 admin.site.register( Account, AccountAdmin)   
 #admin.site.register(Course)
 
-class CourseInfoResource(resources.ModelResource):
-    WLK_COURS_FLAG_NM = fields.Field(
-        column_name = 'ID', attribute='ID',
-        widget=ForeignKeyWidget(Account,)
-    )
-
 class Meta:
-     model = CourseInfoResource
-    # exclude = ('','')
+     model = AccountAdmin
+     exclude = ('','')
     
