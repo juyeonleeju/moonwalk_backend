@@ -1,6 +1,6 @@
 import json
 from django.views import View
-from .models import Course
+from .models import Runningmate
 from django.http import HttpResponse   #.response
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
@@ -9,8 +9,8 @@ def course_list(request, pk):
     ESNTL_ID = get_object_or_404(ESNTL_ID, pk=pk)
     if request.method == 'PUT':
         # 특정 글 갱신을 구현
-        put_data = Course(request.body)
-        form = Course(put_data, instance=post)
+        put_data = Runningmate(request.body)
+        form = Runningmate(put_data, instance=post)
         if form.is_valid():
             post = form.save()
             return JsonResponse(post)

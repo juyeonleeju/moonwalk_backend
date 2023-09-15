@@ -1,4 +1,4 @@
-from django.contrib import admin
+
 from django.contrib import admin
 from .models import Account
 
@@ -9,7 +9,7 @@ from import_export.widgets import ForeignKeyWidget
 # Register your models here.
 class AccountAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = Account
-    list_display = ('email','ID','password','name','phone')
+    list_display = ('email','User_ID','password','name','phone')
     search_fields = ['ipa', 'dev_hostname']
 
 admin.site.register( Account, AccountAdmin)   

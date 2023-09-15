@@ -1,28 +1,25 @@
 from django.contrib import admin
-from .models import Course
+from .models import Runningmate
 
 from import_export import resources, fields
 from import_export.admin import ImportExportMixin
 from import_export.widgets import ForeignKeyWidget
 
-# Register your models here.
-#class courseAdmin(admin.ModelAdmin):
-
-class CourseAdmin(ImportExportMixin, admin.ModelAdmin):
-    resource_class = Course
-    list_display = ('ESNTL_ID', 'WLK_COURS_FLAG_NM', 'WLK_COURS_NM','COURS_DC','SIGNGU_NM','COURS_LEVEL_NM','COURS_DETAIL_LT_CN','ADIT_DC','COURS_TIME_CN','TOILET_DC','LNM_ADDR','COURS_SPOT_LA','COURS_SPOT_LO')
+class RmAdmin(ImportExportMixin, admin.ModelAdmin):
+    resource_class = Runningmate
+    list_display = ('Rm_Name', 'Rm_color', 'Rm_species','Rm_category')
     search_fields = ['ipa', 'dev_hostname']
 
-admin.site.register( Course, CourseAdmin)   
+admin.site.register( Runningmate, RmAdmin)   
 
 
-class CourseInfoResource(resources.ModelResource):
+class RmInfoResource(resources.ModelResource):
     WLK_COURS_FLAG_NM = fields.Field(
-        column_name = 'WLK_COURS_FLAG_NM', attribute='WLK_COURS_FLAG_NM',
-        widget=ForeignKeyWidget(Course,'WLK_COURS_FLAG_NM')
+        column_name = 'Rm_Name', attribute='Rm_Name',
+        widget=ForeignKeyWidget(Runningmate,'Rm_Name')
     )
 #어디서 찾아서 복붙한건데 무슨 문법인지 모르겟ㅠㅜ
 
 class Meta:
-     model = CourseInfoResource
+     model = RmInfoResource
      exclude = ('','')

@@ -4,7 +4,7 @@ from django.db import models
 
 class Account(models.Model):
     email = models.EmailField(max_length=254)
-    ID = models.CharField(max_length = 500)
+    User_ID = models.CharField(max_length = 500)
     password = models.CharField(max_length = 500)
     name = models.CharField(max_length = 500)
     phone = models.CharField(max_length = 11)
