@@ -27,6 +27,12 @@ def course_list(request, pk):
 
 
 
+def index(request):
+    context = {
+        'message': 'Hello, Django!'
+    }
+    return render(request, 'index.html', context)
+
 
 
 
