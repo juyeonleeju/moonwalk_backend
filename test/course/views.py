@@ -5,7 +5,24 @@ from django.http import HttpResponse   #.response
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
-def course_list(request, pk):
+from .models import Runningmate
+
+class RunningmateView(View):
+    def get(self, request, *args, **kwargs):
+      Rm_id = request.GET.get('Rm_id', None)
+      Rm_Name = request.GET.get('Rm_Name', None)
+    
+      Rm_id = Rm_id.objects.get(id=Rm_id)
+    
+      Runnungmate_information = {
+        "Rm_id": Rm_id,
+        "Rm_Name": Rm_Name
+     }
+    
+      return JsonResponse({"message": Runnungmate_information}, status=200)
+
+
+def Rm_list(request, pk):
     ESNTL_ID = get_object_or_404(ESNTL_ID, pk=pk)
     if request.method == 'PUT':
         # 특정 글 갱신을 구현
@@ -32,7 +49,6 @@ def index(request):
         'message': 'Hello, Django!'
     }
     return render(request, 'index.html', context)
-
 
 
 
