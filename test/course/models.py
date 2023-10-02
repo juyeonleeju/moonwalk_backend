@@ -5,10 +5,11 @@ class Runningmate(models.Model):
     Rm_Name = models.CharField(null=True,max_length=200) #얘네는 필드임.
     Rm_color = models.CharField(null=True,max_length=200) 
     Rm_species = models.CharField(null=True,max_length=200)
-    Rm_category = models.CharField(null=True,max_length=200)
+    Rm_level = models.IntegerField(null=True,default =0)
 
-def __str__(self):
-        return self.title #객체 문자열 표현 리턴 
+    class Meta:
+        db_table = "Runningmate"
 
+    
 
-#course = runningmate
+#course = runningmate 
