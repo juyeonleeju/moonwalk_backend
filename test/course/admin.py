@@ -7,7 +7,7 @@ from import_export.widgets import ForeignKeyWidget
 
 class RmAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = Runningmate
-    list_display = ('Rm_Name', 'Rm_color', 'Rm_species','Rm_category')
+    list_display = ('Rm_Name', 'Rm_color', 'Rm_species',)
     search_fields = ['ipa', 'dev_hostname']
 
 admin.site.register( Runningmate, RmAdmin)   
