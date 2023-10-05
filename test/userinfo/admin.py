@@ -1,6 +1,5 @@
 
 from django.contrib import admin
-<<<<<<< HEAD
 from .models import userinformation
 
 from import_export import resources, fields
@@ -20,7 +19,7 @@ class Meta:
      model = userinfoAdmin
      exclude = ('','')
     
-=======
+
 from .models import User_info
 
 # Register your models here.
@@ -35,4 +34,3 @@ class Meta:
      model = User_infoAdmin
      exclude = ('','')
     
->>>>>>> bf3ddc0bc369481e26652f928ec407fba3fa9cc3

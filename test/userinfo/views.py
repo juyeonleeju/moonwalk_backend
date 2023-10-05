@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import json
 from django.views import View
 from .models import userinformation
@@ -39,7 +39,7 @@ def userinformation_list(request, pk):
     else:
         # 특정 글 내용 응답을 구현
         return JsonResponse(post)
-=======
+
 from django.shortcuts import render
 import json
 from django.views import View
@@ -58,4 +58,4 @@ class User_info(View):
         ).save()						# 받아온 데이터를 DB에 저장시켜줌
 
         return JsonResponse({'message':''},status=200)
->>>>>>> bf3ddc0bc369481e26652f928ec407fba3fa9cc3
+
