@@ -49,7 +49,11 @@ INSTALLED_APPS = [
     'course',
     'login',
     'userinfo',
+<<<<<<< HEAD
    
+=======
+    'Rewards',
+>>>>>>> bf3ddc0bc369481e26652f928ec407fba3fa9cc3
 ]
 
 MIDDLEWARE = [
@@ -90,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
-        'USER' : 'ju010320',
-        'PASSWORD': 'duswn2568',        #<--- 계정 암호           
+        'USER' : 'kimtheground',
+        'PASSWORD': 'sam80110',        #<--- 계정 암호           
         'HOST': '127.0.0.1',      #<--- DB가 설치된 컴의 ip          
         'PORT': '3306', 
     }
