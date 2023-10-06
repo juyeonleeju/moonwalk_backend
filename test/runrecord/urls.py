@@ -1,9 +1,9 @@
 from django.urls import path,include
-from .views import userinfoView
+from .views import RunrecordView
 from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/userinfo', userinfoView.as_view()), 
+    path('/Runrecordinfo', RunrecordView.as_view()), 
     
 ] 
