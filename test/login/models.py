@@ -75,5 +75,5 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
     
-    class Meta:
-        db_table = 'Account' # 테이블명을 user로 설정 -> Account로 변경함
+    # class Meta:
+    #     db_table = 'Account' # 테이블명을 user로 설정 -> Account로 변경함
