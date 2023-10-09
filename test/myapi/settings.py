@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--#(h_bq@n=!#c-celc3zsyl-^5ab0k==**w9e&8u(kg#is^0*r
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+"""
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -34,7 +34,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
-
+"""
 
 # Application definition
 
@@ -45,10 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt', #jwt추가
     'import_export',
     'course',
     'login',
     'userinfo',
+    'runrecord',
    
 ]
 
@@ -144,4 +147,30 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+
+#jwt추가
+AUTH_USER_MODEL = 'login.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # 인증된 요청인지 확인
+        'rest_framework.permissions.IsAdminUser',  # 관리자만 접근 가능
+        'rest_framework.permissions.AllowAny',  # 누구나 접근 가능
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT를 통한 인증방식 사용
+    ),
+}
+
+REST_USE_JWT = True
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'SIGNING_KEY': "SECRET_KEY",
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
