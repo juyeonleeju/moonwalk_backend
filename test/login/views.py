@@ -11,6 +11,7 @@ from django.contrib.auth.models import update_last_login
 from login.serializers import UserSerializer
 
 @api_view(['POST'])
+#  @permission_classes([AllowAny])를 사용하면 이 뷰에 대한 인증 또는 권한 확인 없이 누구나 액세스할 수 있다는 것을 명시적으로 나타냅니다. 다시 말해, 이것은 이 뷰에 무제한 액세스를 허용
 @permission_classes([AllowAny])
 def signup(request):
     user_ID = request.data.get('user_ID')
