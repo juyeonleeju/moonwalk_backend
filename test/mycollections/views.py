@@ -1,13 +1,13 @@
 import json
 from django.views import View
-from .models import Runningmate
+from .models import collections
 from django.http import HttpResponse   #.response
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Runningmate
+
 
 # Create your views here.
-class collections(View):
+class collectionsView(View):
     def get(self, request, *args, **kwargs): # 요청에서 Rm_id와 Rm_Name 매개변수를 가져옵니다.
       cRm_id = request.GET.get('cRm_id', None)
       cRm_Name = request.GET.get('cRm_Name', None)

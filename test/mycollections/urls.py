@@ -1,10 +1,10 @@
 from django.urls import path,include
-from .views import cRm_list
-from django.contrib import admin
 
+from django.contrib import admin
+from . import views
 
 
 urlpatterns = [
-    path('/collections', cRm_list.as_view()),
+    path('collections/', views.cRm_list),
 ]
 

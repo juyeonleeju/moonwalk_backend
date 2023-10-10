@@ -12,7 +12,7 @@ class collectionsAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('cRm_id', 'cRm_Name', 'cRm_color', 'cRm_species', )
     search_fields = ['ipa', 'dev_hostname']
 
-admin.site.register( collections, collections)
+admin.site.register( collections, collectionsAdmin)
 
 
 class Meta:
