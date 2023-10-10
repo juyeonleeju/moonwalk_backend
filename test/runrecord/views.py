@@ -1,28 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from .models import Runrecord
-from .serializers import RunrecordSerializer 
-from rest_framework.parsers import JSONParser
-# Create your views here.
+import json
+from django.views import View
+from django.http import JsonResponse
 
-#runrecord 
-#누적 걸음걸이 수 put 해주기
+class Runrecord_putView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        Account(
+            User_ID    = data['User_ID'],
+            password = data['password']
+        ).save()						# 받아온 데이터를 DB에 저장시켜줌
 
-def Runrecord(request): 
-    if request.method == 'GET':
-            query_set = Runrecord.objects.all()
-            serializer = RunrecordSerializer(query_set, many=True)
-            return JsonResponse(serializer.data, safe=False)
+        return JsonResponse({'message':'회원가입 완료'},status=200)
 
-    elif request.method == 'POST':
-        total_walk_count = walk_count.
+class Runrecord_postView(View):
+    def post(self, request):
+        data = json.loads(request.body)
 
-        sum = 
-        data = JSONParser().parse(request)
-        serializer = RunrecordSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+        if Account.objects.filter(email = data['email']).exists() :
+            user = Account.objects.get(email = data['email'])
+            if user.password == data['password'] :
+                return JsonResponse({'message':f'{user.email}님 로그인 성공!'}, status=200)
+            else :
+                return JsonResponse({'message':'비밀번호가 틀렸어요'},status = 200)
 
+        return JsonResponse({'message':'등록되지 않은 이메일 입니다.'},status=200)
