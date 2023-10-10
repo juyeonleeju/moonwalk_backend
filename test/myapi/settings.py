@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'login',
     'userinfo',
     'runrecord',
+    'mycollections',
     #'showMain',
    
 ]

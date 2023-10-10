@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('login.urls')), #login앱
     path('profile/', include('userinfo.urls')), #userinfo앱
+    path('mycollections/', include('mycollections.urls')), #콜렉션
 ]
 
