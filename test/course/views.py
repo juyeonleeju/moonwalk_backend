@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Runningmate
 
 # Runningmate 정보를 반환하는 클래스 정의
-
+#러닝메이트 id, 종류, 이름, 색깔 다 post 해주면 될듯
 class RunningmateView(View):
     def get(self, request, *args, **kwargs): # 요청에서 Rm_id와 Rm_Name 매개변수를 가져옵니다.
       Rm_id = request.GET.get('Rm_id', None)

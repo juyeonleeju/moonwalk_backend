@@ -1,27 +1,30 @@
-from django.shortcuts import render
-import json
-from django.views import View
-from django.http import JsonResponse
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Runrecord
+from .serializers import RunrecordSerializer
 
-class Runrecord_putView(View):
+class RunrecordView(APIView):
     def post(self, request):
-        data = json.loads(request.body)
-        Account(
-            User_ID    = data['User_ID'],
-            password = data['password']
-        ).save()						# 받아온 데이터를 DB에 저장시켜줌
+        # POST 요청으로부터 walk_count 값을 가져옵니다.
+        walk_count = request.data.get('walk_count')
+        
+        try:
+            # 가장 최근의 레코드를 'updated_at' 필드를 기준으로 가져옵니다.
+            latest_record = Runrecord.objects.latest('updated_at')
+            previous_total_wc = latest_record.total_wc
+        except Runrecord.DoesNotExist:
+            # 이전 레코드가 없는 경우 0으로 초기화합니다.
+            previous_total_wc = 0 
+        
+        # 새로운 total_wc 값을 계산합니다.
+        total_wc = walk_count + previous_total_wc
 
-        return JsonResponse({'message':'회원가입 완료'},status=200)
-
-class Runrecord_postView(View):
-    def post(self, request):
-        data = json.loads(request.body)
-
-        if Account.objects.filter(email = data['email']).exists() :
-            user = Account.objects.get(email = data['email'])
-            if user.password == data['password'] :
-                return JsonResponse({'message':f'{user.email}님 로그인 성공!'}, status=200)
-            else :
-                return JsonResponse({'message':'비밀번호가 틀렸어요'},status = 200)
-
-        return JsonResponse({'message':'등록되지 않은 이메일 입니다.'},status=200)
+        # RunrecordSerializer를 사용하여 새로운 레코드를 생성하고 데이터베이스에 저장합니다.
+        serializer = RunrecordSerializer(data={'walk_count': walk_count, 'total_wc': total_wc})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        # 직렬화 오류인 경우 에러 응답을 반환합니다.
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
