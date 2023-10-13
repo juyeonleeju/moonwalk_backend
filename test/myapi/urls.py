@@ -8,5 +8,6 @@ urlpatterns = [
     path('user/', include('login.urls')), #login앱
     path('profile/', include('userinfo.urls')), #userinfo앱
     path('mycollections/', include('mycollections.urls')), #콜렉션
+    path('runrecord/', include('runrecord.urls')), 
 ]
 
