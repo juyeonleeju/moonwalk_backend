@@ -1,10 +1,10 @@
 from django.urls import path,include
-from .views import Rm_list
+from .views import RandomRunningmateView
 from django.contrib import admin
 
 
 
 urlpatterns = [
-    path('/RunningMate', Rm_list.as_view()),
+    path('/RunningMate', RandomRunningmateView.as_view()),
 ]
 

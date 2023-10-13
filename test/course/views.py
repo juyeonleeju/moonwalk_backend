@@ -1,40 +1,23 @@
-import json
-from django.views import View
+
+import random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 from .models import Runningmate
-from django.http import HttpResponse   #.response
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
-from .models import Runningmate
-
-# Runningmate 정보를 반환하는 클래스 정의
-#러닝메이트 id, 종류, 이름, 색깔 다 post 해주면 될듯
-class RunningmateView(View):
-    def get(self, request, *args, **kwargs): # 요청에서 Rm_id와 Rm_Name 매개변수를 가져옵니다.
-      Rm_id = request.GET.get('Rm_id', None)
-      Rm_Name = request.GET.get('Rm_Name', None)
-    
-      Rm_id = Rm_id.objects.get(id=Rm_id)
-    
-      Runnungmate_information = {
-        "Rm_id": Rm_id,
-        "Rm_Name": Rm_Name
-     }.save()
-    
-      return JsonResponse({"message": Runnungmate_information}, status=200)
+from .serializers import RunningmateSerializer
 
 
-def Rm_list(request, pk):
-    ESNTL_ID = get_object_or_404(ESNTL_ID, pk=pk)
-    if request.method == 'PUT':
-        # 특정 글 갱신을 구현
-        put_data = Runningmate(request.body)
-        form = Runningmate(put_data, instance=post)
-        if form.is_valid():
-            post = form.save()
-            return JsonResponse(post)
-        return JsonResponse(form.errors)
-    
-    
-    else:
-        # 특정 글 내용 응답을 구현
-        return JsonResponse(post)
+class RandomRunningmateView(APIView):
+    def get(self, request):
+        # 랜덤하게 레코드 하나를 선택
+        random_runningmate = Runningmate.objects.order_by('?').first()
+
+        if random_runningmate:
+            serializer = RunningmateSerializer(random_runningmate)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'message': 'No runningmate records found.'}, status=status.HTTP_NOT_FOUND)
+
+
+
