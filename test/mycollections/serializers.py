@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth import collections
+from django.contrib.auth import get_user_model
 
 class collectionsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = collections()
+        model = get_user_model()
         fields = '__all__'

@@ -5,6 +5,6 @@ from django.contrib import admin
 
 
 urlpatterns = [
-    path('collectionget/', views.collectionsAPIView),
-    path('collectionput/', views.cRm_listAPIView),
+    path('collectionget/', views.collectionsAPIView.as_view()),
+    path('collectionput/', views.cRm_listAPIView.as_view()),
 ]

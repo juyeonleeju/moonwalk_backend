@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import collections
-from userinfo.serializers import collectionsSerializer
+from mycollections.serializers import collectionsSerializer
 
 class collectionsAPIView(APIView):
     def get(self, request, format=None):
