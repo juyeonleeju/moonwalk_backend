@@ -88,7 +88,7 @@ TEMPLATES = [
         },
     },
 ]
-
+#주석 추가
 WSGI_APPLICATION = 'myapi.wsgi.application'
 
 
